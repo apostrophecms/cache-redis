@@ -60,4 +60,19 @@ describe('Apostrophe cache implementation in Redis', function() {
     assert(responses.length === 2000);
     assert(!responses.find(r => r !== 'OK'));
   });
+
+  it('can retrieve key from cache 1', async function() {
+    const val = await apos.cache.get('cache-one', 1000);
+    assert(val === 1000);
+  });
+  it('can retrieve key from cache 2', async function() {
+    const val = await apos.cache.get('cache-two', 3000);
+
+    assert(val === 3000);
+  });
+  it('cannot retrieve Cache Two key from Cache One (namespacing)', async function() {
+    const val = await apos.cache.get('cache-one', 3000);
+
+    assert(val === undefined);
+  });
 });
