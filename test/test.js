@@ -8,13 +8,13 @@ describe('Apostrophe cache implementation in Redis', function() {
   // let cache1;
   // let cache2;
 
-  this.timeout(10000);
+  this.timeout(5000);
 
-  after(async function () {
+  after(async () => {
     testUtil.destroy(apos);
   });
 
-  it('should be a property of the apos object', async function () {
+  it('should be a property of the apos object', async () => {
     apos = await testUtil.create({
       shortname: 'test-redis',
       testModule: true,
@@ -36,15 +36,15 @@ describe('Apostrophe cache implementation in Redis', function() {
     assert(apos.modules['@apostrophecms/cache'].options.testOption === true);
   });
 
-  // it('initializes a redis client', function() {
-  //   assert(apos.caches.client);
-  // });
+  it('initializes a redis client', async () => {
+    assert(apos.cache.client);
+  });
   // it('can return a cache', function() {
-  //   cache1 = apos.caches.get('mocha-test', 'cache1');
+  //   cache1 = apos.cache.get('mocha-test', 'cache1');
   //   assert(cache1);
   // });
   // it('can return a second cache', function() {
-  //   cache2 = apos.caches.get('mocha-test', 'cache2');
+  //   cache2 = apos.cache.get('mocha-test', 'cache2');
   //   assert(cache2);
   // });
   // it('can clear cache 1', function(done) {

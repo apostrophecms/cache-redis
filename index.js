@@ -22,12 +22,12 @@ module.exports = {
   },
   handlers(self) {
     return {
-      'apostrophe:destroy': {
-        closeRedisConnection () {
-          self.client.stream.removeAllListeners();
-          self.client.stream.destroy();
-        }
-      }
+      // 'apostrophe:destroy': {
+      //   closeRedisConnection () {
+      //     self.client.stream.removeAllListeners();
+      //     self.client.stream.destroy();
+      //   }
+      // }
     };
   }
 };
