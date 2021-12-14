@@ -1,17 +1,33 @@
-const fs = require('fs');
-const path = require('path');
+const redis = require('redis');
 
 module.exports = {
-  bundle: {
-    directory: 'modules',
-    modules: getBundleModuleNames()
+  improve: '@apostrophecms/cache',
+  methods(self) {
+    return {
+      // Fully replace the `enableCollection` method from core.
+      async enableCollection() {
+        const redisOptions = self.options.redis || {};
+
+        if (!self.options.prefix) {
+          if (self.options.prefix !== false) {
+            // Distinguish sites
+            self.options.prefix = self.apos.shortName + ':';
+          }
+        }
+
+        self.prefix = self.options.prefix || '';
+        self.client = redis.createClient(redisOptions);
+      }
+    };
+  },
+  handlers(self) {
+    return {
+      'apostrophe:destroy': {
+        closeRedisConnection () {
+          self.client.stream.removeAllListeners();
+          self.client.stream.destroy();
+        }
+      }
+    };
   }
 };
-
-function getBundleModuleNames() {
-  const source = path.join(__dirname, './modules/@apostrophecms');
-  return fs
-    .readdirSync(source, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => `@apostrophecms/${dirent.name}`);
-}
