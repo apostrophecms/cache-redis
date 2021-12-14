@@ -17,7 +17,36 @@ module.exports = {
 
         self.prefix = self.options.prefix || '';
         self.client = redis.createClient(redisOptions);
+      },
+      getRedisKey(namespace, key) {
+        return self.prefix + namespace + ':' + key;
+      },
+
+      // Get the cached value associated with the specified key from the
+      // specified namespace. Returns undefined if not found. Be sure to use
+      // `await`.
+      async get(namespace, key) {
+        key = self.getRedisKey(namespace, key);
+
+        const json = await self.client.get(key);
+
+        if (!json) {
+          return undefined;
+        }
+
+        let data;
+
+        try {
+          data = JSON.parse(json);
+        } catch (error) {
+          self.apos.util.error(error);
+          // An error here is likely due to invalid JSON structure.
+          return undefined;
+        }
+
+        return data;
       }
+
     };
   },
   handlers(self) {

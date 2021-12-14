@@ -5,7 +5,7 @@ const testUtil = require('apostrophe/test-lib/test');
 
 describe('Apostrophe cache implementation in Redis', function() {
   let apos;
-  // let cache1;
+  let cache1;
   // let cache2;
 
   this.timeout(5000);
@@ -39,10 +39,11 @@ describe('Apostrophe cache implementation in Redis', function() {
   it('initializes a redis client', async () => {
     assert(apos.cache.client);
   });
-  // it('can return a cache', function() {
-  //   cache1 = apos.cache.get('mocha-test', 'cache1');
-  //   assert(cache1);
-  // });
+
+  it('can return a cache', async () => {
+    cache1 = apos.cache.get('mocha-test', 'cache1');
+    assert(cache1);
+  });
   // it('can return a second cache', function() {
   //   cache2 = apos.cache.get('mocha-test', 'cache2');
   //   assert(cache2);
