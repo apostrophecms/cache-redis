@@ -1,7 +1,6 @@
 const assert = require('assert');
 const testUtil = require('apostrophe/test-lib/test');
 const range = require('lodash.range');
-// const async = require('async');
 
 describe('Apostrophe cache implementation in Redis', function() {
   let apos;
