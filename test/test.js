@@ -75,4 +75,42 @@ describe('Apostrophe cache implementation in Redis', function() {
 
     assert(val === undefined);
   });
+
+  it('can clear a cache', async function() {
+    await apos.cache.clear('cache-one');
+
+    const val = await apos.cache.get('cache-one', 1000);
+    assert(val === undefined);
+  });
+  it('can fetch a key from an uncleared cache', async function() {
+    const val = await apos.cache.get('cache-two', 3000);
+
+    assert(val === 3000);
+  });
+  // Timeout
+  it('can store a key with a 1-second timeout', async function() {
+    const response = await apos.cache.set('cache-one', 'timeout', 'timeout', 1);
+    assert(response === 'OK');
+  });
+
+  it('can fetch that key within the 1-second timeout', async function() {
+    const value = await apos.cache.get('cache-one', 'timeout');
+    assert(value === 'timeout');
+  });
+  it('cannot fetch that key after 2 seconds', async function() {
+    this.timeout(5000);
+
+    await pause(2000);
+
+    const value = await apos.cache.get('cache-one', 'timeout');
+    assert(!value);
+  });
 });
+
+async function pause (delay) {
+  if (!delay) {
+    return;
+  }
+
+  return new Promise((resolve) => setTimeout(resolve, delay));
+}

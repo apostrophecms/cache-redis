@@ -64,7 +64,6 @@ module.exports = {
       //
       // The data you store should be JSON-friendly.
       // You DO NOT have to stringify it yourself.
-
       set: async function (namespace, key, value, lifetime) {
         if (arguments.length === 3) {
           lifetime = 0;
@@ -81,13 +80,11 @@ module.exports = {
 
       // Clear the cache of all keys and values in the given namespace.
       // Be sure to use `await`.
-
       async clear(namespace) {
-        console.info('#️⃣ CLEARING', namespace);
         // This is not as simple as it sounds:
         // https://stackoverflow.com/questions/4006324/how-to-atomically-delete-keys-matching-a-pattern-using-redis
         //
-        // I'm avoiding Lua because of comments in that article that it might
+        // We're avoiding Lua because of comments in that article that it might
         // not play nice with Redis clustering.
         //
         // Use of `keys` is not deprecated as long as it's for a
