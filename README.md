@@ -1,5 +1,3 @@
-TODO: Add redis container to the github workflow: https://docs.github.com/en/actions/using-containerized-services/creating-redis-service-containers
-
 <div align="center">
   <img src="https://raw.githubusercontent.com/apostrophecms/apostrophe/main/logo.svg" alt="ApostropheCMS logo" width="80" height="80">
 
