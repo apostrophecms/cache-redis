@@ -90,7 +90,7 @@ module.exports = {
         // Use of `keys` is not deprecated as long as it's for a
         // special-purpose, occasional operation, and clearing an entire cache
         // qualifies.
-        let keys = await self.client.keys(self.prefix + namespace + ':*');
+        let keys = await self.client.keys(`${self.prefix}:${namespace}:*`);
 
         await removeNextBatch();
 
