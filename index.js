@@ -27,7 +27,7 @@ module.exports = {
         await self.client.connect();
       },
       getRedisKey(namespace, key) {
-        return self.prefix + namespace + ':' + key;
+        return `${self.prefix}:${namespace}:${key}`;
       },
       // Get the cached value associated with the specified key from the
       // specified namespace. Returns undefined if not found. Be sure to use
