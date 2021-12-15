@@ -50,7 +50,7 @@ require('apostrophe')({
 Configure the underlying Redis client by adding a configuration object on the cache module's `redis` option.
 
 ```javascript
-// modules/@apostrophecms/cache-redis/index.js
+// modules/@apostrophecms/cache/index.js
 module.exports = {
   options: {
     redis: {
@@ -118,7 +118,7 @@ By default, this module applies a prefix to cache keys in the store. This prefix
 To disable the cache key prefix, set the cache module's `prefix` option to `false`.
 
 ```javascript
-// modules/@apostrophecms/cache-redis/index.js
+// modules/@apostrophecms/cache/index.js
 module.exports = {
   options: {
     prefix: false
@@ -129,7 +129,7 @@ module.exports = {
 To customize the prefix, set the `prefix` option to the desired string value.
 
 ```javascript
-// modules/@apostrophecms/cache-redis/index.js
+// modules/@apostrophecms/cache/index.js
 module.exports = {
   options: {
     prefix: 'project-alpha'
