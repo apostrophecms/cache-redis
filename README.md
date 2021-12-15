@@ -74,8 +74,8 @@ The Apostrophe cache `get` and `set` methods take two arguments that are used fo
 | `key` | The unique cache item key within a namespace. |
 
 ```javascript
-apos.cache.get(namespace, key)
-apos.cache.set(namespace, key, value)
+await apos.cache.get(namespace, key)
+await apos.cache.set(namespace, key, value)
 ```
 
 Example:
@@ -87,7 +87,7 @@ module.exports = {
   apiRoutes(self) {
     return {
       get: {
-        // GET /api/v1/api-connect/setCacheInfo
+        // GET /api/v1/api-connect/set-cache-info
         async setCacheInfo(req) {
           const info = await myApiClient.get({ latest: true });
 
@@ -97,7 +97,7 @@ module.exports = {
 
           return { status };
         },
-        // GET /api/v1/api-connect/getCacheInfo
+        // GET /api/v1/api-connect/get-cache-info
         async getCacheInfo(req) {
           // 👇 This will return the stored information or `undefined` if not
           // set.
