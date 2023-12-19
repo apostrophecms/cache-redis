@@ -106,7 +106,11 @@ module.exports = {
           return removeNextBatch();
         }
 
-      }
+      },
+      async delete(key, namespace) {
+        key = self.getRedisKey(namespace, key);
+        return self.client.del(key);
+      },
     };
   },
   handlers(self) {
