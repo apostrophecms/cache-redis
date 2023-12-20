@@ -107,10 +107,10 @@ module.exports = {
         }
 
       },
-      async delete(key, namespace) {
+      async delete(namespace, key) {
         key = self.getRedisKey(namespace, key);
         return self.client.del(key);
-      },
+      }
     };
   },
   handlers(self) {
