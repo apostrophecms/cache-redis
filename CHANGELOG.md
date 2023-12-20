@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+### Fixes
+
+* Adds a deletion method to override core and allow deletion of login attempt cache
+
 ## 1.0.0 - 2023-01-16
 
 * Declared stable. No code changes.
