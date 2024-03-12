@@ -4,7 +4,7 @@
   <h1>Apostrophe Redis Cache</h1>
   <p>
     <a aria-label="Apostrophe logo" href="https://v3.docs.apostrophecms.org">
-      <img src="https://img.shields.io/badge/MADE%20FOR%20Apostrophe%203-000000.svg?style=for-the-badge&logo=Apostrophe&labelColor=6516dd">
+      <img src="https://img.shields.io/badge/MADE%20FOR%20ApostropheCMS-000000.svg?style=for-the-badge&logo=Apostrophe&labelColor=6516dd">
     </a>
     <a aria-label="Test status" href="https://github.com/apostrophecms/cache-redis/actions">
       <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/apostrophecms/cache-redis/tests/main?label=Tests&logo=github&labelColor=000&style=for-the-badge">
